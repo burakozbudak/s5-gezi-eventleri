@@ -62,3 +62,97 @@ window.addEventListener('keydown', (event) => {
 const fullNameInput = document.getElementById('full_name');
 const submitButton = document.querySelector('button');
 const submitResult = document.getElementById('submitResult');
+
+if (fullNameInput && submitButton && submitResult) {
+  fullNameInput.addEventListener('input', () => {
+    const inputValue = fullNameInput.value.toUpperCase();
+    fullNameInput.value = inputValue;
+    if (inputValue.length > 5) {
+      submitButton.disabled = false;
+    } else {
+      submitButton.disabled = true;
+    }
+  });
+
+  submitButton.addEventListener('click', (event) => {
+    event.preventDefault(); // Formun submit edilmesini engelle
+    const inputValue = fullNameInput.value;
+    submitResult.textContent = `${inputValue} başarı ile kaydedildi.`;
+    fullNameInput.value = ''; // Input alanını temizle
+    submitButton.disabled = true; // Butonu tekrar disabled yap
+  });
+} else {
+  console.error('Gerekli elementler bulunamadı!');
+}
+// CSS sınıflarını ekleyin
+const style = document.createElement('style');
+style.textContent = `
+  .grayscale {
+    filter: grayscale(100%);  
+  }
+  .theme1 {
+    background-color: lightblue;  
+    color: darkblue;
+  }
+  .theme2 {
+    background-color: lightgreen;
+    color: darkgreen;
+  }
+  .theme3 {
+    background-color: lightcoral;
+    color: darkred;
+  }
+`;
+document.head.appendChild(style);
+// HTML elementlerini kontrol edin
+if (
+  !document.getElementById('full_name') ||
+  !document.querySelector('button') ||
+  !document.getElementById('submitResult')
+) {
+  console.error('HTML elementleri eksik veya yanlış tanımlanmış!');
+}
+// HTML elementlerini kontrol edin
+if (!document.querySelector('img')) {
+  console.error('HTML içerisinde <img> etiketleri bulunamadı!');
+}
+// HTML elementlerini kontrol edin
+if (!document.querySelector('button')) {
+  console.error('HTML içerisinde <button> etiketi bulunamadı!');
+}
+// HTML elementlerini kontrol edin
+if (!document.getElementById('submitResult')) {
+  console.error('HTML içerisinde <p id="submitResult"> etiketi bulunamadı!');
+}
+
+submitButton.disabled = true; // Başlangıçta buton disabled olsun
+fullNameInput.value = ''; // Input alanını temizle
+submitResult.textContent = ''; // Submit sonucu alanını temizle
+
+button.addEventListener('click', function (event) {
+  event.preventDefault();
+
+  const inputValue = input.value;
+  const submitResult = document.getElementById('submitResult');
+
+  if (submitResult) {
+    submitResult.textContent = `${inputValue} başarı ile kaydedildi.`;
+    submitResult.style.cssText = `
+                font-weight: bold;
+                margin-top: 15px;
+                padding: 10px;
+                background: #d4edda;
+                border: 1px solid #c3e6cb;
+                border-radius: 8px;
+                color: #155724;
+            `;
+  }
+
+  // Input alanını temizle
+  input.value = '';
+  input.style.borderColor = '#e0e0e0';
+
+  // Button'u tekrar disabled yap
+  button.disabled = true;
+  updateButtonState();
+});
