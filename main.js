@@ -30,3 +30,35 @@ Form submit edildiğinde (Kaydet butonuna basıldığında):
 - Input alanını temizleyin
 - <button> tekrar disabled hale gelsin
 */
+const images = document.querySelectorAll('img');
+images.forEach((img) => {
+  img.addEventListener('mouseenter', () => {
+    img.classList.add('grayscale');
+  });
+  img.addEventListener('mouseleave', () => {
+    img.classList.remove('grayscale');
+  });
+});
+window.addEventListener('keydown', (event) => {
+  const body = document.body;
+  switch (event.key) {
+    case '1':
+      body.classList.remove('theme1', 'theme2', 'theme3');
+      body.classList.add('theme1');
+      break;
+    case '2':
+      body.classList.remove('theme1', 'theme2', 'theme3');
+      body.classList.add('theme2');
+      break;
+    case '3':
+      body.classList.remove('theme1', 'theme2', 'theme3');
+      body.classList.add('theme3');
+      break;
+    case 'Escape':
+      body.classList.remove('theme1', 'theme2', 'theme3');
+      break;
+  }
+});
+const fullNameInput = document.getElementById('full_name');
+const submitButton = document.querySelector('button');
+const submitResult = document.getElementById('submitResult');
